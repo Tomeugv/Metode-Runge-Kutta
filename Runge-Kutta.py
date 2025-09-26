@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
+# Definim la funció de la captura (canvi de signe per y')
 def f(x, y):
-    return x  # f_0 = x
+    return - (1 / x**2) - 4 * (x - 6) * np.exp(-2 * (x - 6)**2)
 
 def runge_kutta_45(x0, y0, h):
     f0 = f(x0, y0)
@@ -18,7 +20,7 @@ def runge_kutta_45(x0, y0, h):
 
 # Paràmetres
 x0 = 1
-y0 = 0
+y0 = 1
 x_end = 10
 h = 0.1
 
@@ -37,12 +39,17 @@ while x < x_end:
     y_rk4_vals.append(y_rk4)
     y_rk5_vals.append(y_rk5)
 
+# Solució analítica (donada per l'enunciat, si la tens)
+def y_analitic(x):
+    # Si no la tens, pots deixar-ho en blanc o posar una aproximació si la coneixes
+    return 1/x + np.exp(-2*(x-6)**2)
+
 plt.plot(x_vals, y_rk4_vals, label='RK4')
 plt.plot(x_vals, y_rk5_vals, label='RK5')
-plt.plot(x_vals, [0.5*x**2 - 0.5 for x in x_vals], '--', label='Solució exacta (y=0.5x²-0.5)')
+plt.plot(x_vals, [y_analitic(x) for x in x_vals], '--', label='Solució analítica')
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title('Runge-Kutta Ordre 4 i 5 per f(x, y) = x (rang 1 a 10)')
+plt.title('RKF per la funció de la captura')
 plt.legend()
 plt.grid(True)
 plt.show()
