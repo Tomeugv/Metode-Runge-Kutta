@@ -17,10 +17,10 @@ def runge_kutta_45(x0, y0, h):
     return y_rk4, y_rk5
 
 # Paràmetres
-x0 = 0
+x0 = 1
 y0 = 0
+x_end = 10
 h = 0.1
-n_steps = 50
 
 x_vals = [x0]
 y_rk4_vals = [y0]
@@ -30,7 +30,7 @@ x = x0
 y_rk4 = y0
 y_rk5 = y0
 
-for _ in range(n_steps):
+while x < x_end:
     y_rk4, y_rk5 = runge_kutta_45(x, y_rk4, h)
     x += h
     x_vals.append(x)
@@ -39,10 +39,10 @@ for _ in range(n_steps):
 
 plt.plot(x_vals, y_rk4_vals, label='RK4')
 plt.plot(x_vals, y_rk5_vals, label='RK5')
-plt.plot(x_vals, [0.5*x**2 for x in x_vals], '--', label='Solució exacta (y=0.5x²)')
+plt.plot(x_vals, [0.5*x**2 - 0.5 for x in x_vals], '--', label='Solució exacta (y=0.5x²-0.5)')
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title('Runge-Kutta Ordre 4 i 5 per f(x, y) = x')
+plt.title('Runge-Kutta Ordre 4 i 5 per f(x, y) = x (rang 1 a 10)')
 plt.legend()
 plt.grid(True)
 plt.show()
