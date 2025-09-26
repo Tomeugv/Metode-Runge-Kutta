@@ -18,6 +18,8 @@ def runge_kutta_45(x0, y0, h):
 
     return y_rk4, y_rk5
 
+
+
 # Paràmetres
 x0 = 1
 y0 = 1
@@ -31,6 +33,7 @@ y_rk5_vals = [y0]
 x = x0
 y_rk4 = y0
 y_rk5 = y0
+err = y_rk5 - y_rk4 
 
 while x < x_end:
     y_rk4, y_rk5 = runge_kutta_45(x, y_rk4, h)
@@ -53,3 +56,4 @@ plt.title('RKF per la funció de la captura')
 plt.legend()
 plt.grid(True)
 plt.show()
+print(err)
