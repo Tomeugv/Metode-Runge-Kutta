@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from rk import runge_kutta_45, y_analitic
 
-def f(x, y):
-    return - (1 / x**2) + 4 * (x - 6) * np.exp(-2 * (x - 6)**2)
 
 def fehlberg_adaptatiu(x0, y0, x_end, h_init, tol):
     x_vals = [x0]
