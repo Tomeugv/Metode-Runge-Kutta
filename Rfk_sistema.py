@@ -75,8 +75,9 @@ def plot_results(t_vals, x_vals, dx_vals, h_vals, title_suffix=""):
     plt.grid()
     plt.show()
 
-if __name__ == "__main__":
+def plot_van_der_pol_cases():
     # Cas 1: RKF adaptatiu
+    print("Resolent el Cas 1 (RKF adaptatiu)...")
     x0 = 2.0
     dx0 = 0.0
     t_end = 25
@@ -87,6 +88,7 @@ if __name__ == "__main__":
     plot_results(t_vals, x_vals, dx_vals, h_vals, title_suffix="(RKF adaptatiu)")
 
     # Cas 2: RKF amb pas fix
+    print("Resolent el Cas 2 (Pas fix)...")
     x0 = 0.01
     dx0 = 0.01
     t_end = 25
@@ -95,3 +97,6 @@ if __name__ == "__main__":
     mu = 1.0
     t_vals, x_vals, dx_vals, h_vals = solve_van_der_pol(x0, dx0, t_end, h_init, tol, mu, adaptatiu=False)
     plot_results(t_vals, x_vals, dx_vals, h_vals, title_suffix="(Pas fix)")
+
+if __name__ == "__main__":
+    plot_van_der_pol_cases()
